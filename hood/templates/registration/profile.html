@@ -1,0 +1,132 @@
+{%extends "registration/base.html"%}
+
+{% load bootstrap4 %}
+{% load static%}
+
+{% block content %}
+<!-- {{profile_details.contact | safe}}
+{{profile_details.user | upper}}
+sty
+
+<div class="container">
+
+  <div class="row">
+    <!-- <div class="col-md-2"></div> -->
+    <!-- <div class="col-md-8"> -->
+
+<style>
+.panel{
+  position: relative;
+  justify-content: center;
+  /* overflow: hidden; */
+  /* top: 5%; */
+  text-align:center;
+  left: 30%;
+  margin-top:120px;
+
+}
+
+* {
+    font-size:12px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 50px;
+
+}
+</style>
+        <div class="panel panel-success text-center" style="width:440px;height:auto;border:3px double #0E5582;">
+
+            <div class="panel-body">
+
+             <img src="{{profile_info.photo.url}}" alt="profile-photo" class="img-responsive" style="width:150px;height:150px;border-radius:50%;margin-top:6px;">
+             <!-- <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle prof"> -->
+             <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3AeEIETd1WF-w7g5xkFdUfvcX0FK7tH5gV7qiidS1iW4hJFAzzw" style="height:80px;width:80px;"> -->
+
+
+
+                 <!-- <p><i>Posted At: </i><b>{{pitch.posted}}</b></p> -->
+            </div>
+            <div class="panel-footer">
+                  <h3>
+
+                  username :   {{ profile.username }} <br>
+                  Hood :   {{ request.user.wewe.neighborhood.name }}
+
+                </h3>
+
+            </div>
+            <div class="panel-footer">
+                  <h4>
+
+                  Contact :  {{ profile_info.email }}
+
+                  </h4>
+
+            </div>
+            <div class="panel-footer">
+                    <!-- <a href="/pitch/{{pitch.id}}" style=""><h4>Add Comment | View Comments</h4></a> -->
+                    {% if profile.username == user.username %}
+
+                              <p style="font-size:30px;">
+
+                                 <a class="btn btn-lg btn-info" href="{% url 'update_profile'%}">Edit Profile</a>
+                              </p>
+                      {%endif%}
+            </div>
+            <div class="panel-footer">
+                  <h4>
+
+                    {{ profile_info.bio }}
+
+                  </h4>
+
+
+            </div>
+            <div class="panel-footer">
+                  <h5>
+
+                  Joined Neighborhood Watch   {{ profile_info.timestamp | timesince }} ago
+
+                </h5>
+
+            </div>
+        </div>
+
+    </div>
+
+  <hr>
+  <div class="row">
+
+    {% if projects %}
+    {% if profile.username == user.username %}
+    <h2>You have {{ projects | length}} projects
+<span>
+  <a class="btn btn-info btn-block" href="{% url 'add_project' %}" >Add Project</a>
+
+</span>
+    </h2>
+
+
+    {%else%}
+    <h3>
+      This user has {{ projects | length}} projects
+    </h3>
+        {%endif%}
+    {%endif%}
+{% for project in projects %}
+
+  <div class="col-md-3">
+    <a href="{{project.link}}">
+<div class="card-body">
+<img src=" {{project.image.url}}" alt="">
+</div>
+</a>
+<div class="card-header"><p class="text-center">
+  {{project.description}}
+</p></div>
+  </div>
+
+
+    {%endfor%}
+  </div>
+</div>
+{% endblock %}

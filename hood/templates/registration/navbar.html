@@ -1,0 +1,45 @@
+% load bootstrap4 %}
+{% load static %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+ <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<nav class="navbar fixed-top" id="navbarr">
+    {% if user.is_authenticated %}
+<div class="container">
+    <section class="logo-section"><a href="{% url "index" %}"><img class="logo" src="/static/img/py3.png"  style="width:180px;height:60px;"alt="/></a>
+      <div></div><a href="{% url "index" %}"><img class="logoname"/></a>
+
+
+
+
+
+    <form class="navbar-form" role="search" action="{}" style="width:auto">
+
+       <div class="input-group">
+         <input type="text" class="form-control" placeholder="Search Projects by title" name="title" style="height:38px;">
+         <div class="input-group-btn">
+         </div>
+       </div>
+
+     </form>
+    <section class="icons-section">
+
+<a href="{%%}"><ion-icon name="cloud-upload" class="ionic"></ion-icon></a>
+
+      <a href="{% %}"><ion-icon name="contact" class="ionic"></ion-icon></a>
+
+
+
+      <a href="/logout"><ion-icon name="log-out" class="ionic"></ion-icon></a>
+
+
+</section>
+
+{% endif%}
+  </nav>
+
+<script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+</div>
