@@ -13,6 +13,31 @@ class Neighborhood(models.Model):
     photo = models.ImageField(upload_to='propics/',default='propics/default.jpg')
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
+class Profile(models.Model):
+    bio = HTMLField(default="Neighbors")
+    photo = models.ImageField(upload_to='propics/',default='propics/pro.png')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="meme",primary_key=True)
+    neighborhood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE,null=True,blank=True,related_name="members")
+    email = models.CharField(max_length=60,blank=True)
+
+class Business(models.Model):
+    name=models.CharField(max_length=40, null=True, blank=True)
+    proprietor=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+    neighborhood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE,null=True,blank=True,related_name="businesses")
+    email = models.EmailField(max_length=100, null=True, blank=True)
+
+class Alert(models.Model):
+    alert=HTMLField()
+    posted_by=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+    neighborhood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE,null=True,blank=True,related_name="alerts")
+    date_posted = models.DateTimeField(auto_now=True)
+
+class Comment(models.Model):
+    comment = HTMLField(default="")
+    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
+    date_posted = models.DateTimeField(auto_now=True)
+    alert=models.ForeignKey(Alert, on_delete=models.CASCADE,null=True,blank=True,related_name="comments")
+
     def create_neighborhood(self):
         self.save()
     def delete_neighborhood(self):
@@ -25,13 +50,6 @@ class Neighborhood(models.Model):
         updated_neighborhood = cls.objects.filter(id = id).update(name = name, description = description ,location = location,category = category,photo=photo)
     def __str__(self):
         return self.name
-
-class Profile(models.Model):
-    bio = HTMLField(default="Neighbors")
-    photo = models.ImageField(upload_to='propics/',default='propics/pro.png')
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="meme",primary_key=True)
-    neighborhood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE,null=True,blank=True,related_name="members")
-    email = models.CharField(max_length=60,blank=True)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -60,12 +78,6 @@ class Profile(models.Model):
         profile = Profile.objects.get(user = id)
         return profile
 
-class Business(models.Model):
-    name=models.CharField(max_length=40, null=True, blank=True)
-    proprietor=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
-    neighborhood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE,null=True,blank=True,related_name="businesses")
-    email = models.EmailField(max_length=100, null=True, blank=True)
-
     def __str__(self):
         return self.name
     def create_business(self):
@@ -80,12 +92,6 @@ class Business(models.Model):
     def update_business(cls,id,name,proprietor,neighborhood,email):
         updated_business=cls.object.filter(id=id).update(name=name,proprietor=proprietor,neighborhood=neighborhood,email=email)
 
-class Alert(models.Model):
-    alert=HTMLField()
-    posted_by=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
-    neighborhood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE,null=True,blank=True,related_name="alerts")
-    date_posted = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         return self.alert
     def save_alert(self):
@@ -94,12 +100,6 @@ class Alert(models.Model):
         self.delete()
     class Meta:
         ordering = ['alert']
-
-class Comment(models.Model):
-    comment = HTMLField(default="")
-    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
-    date_posted = models.DateTimeField(auto_now=True)
-    alert=models.ForeignKey(Alert, on_delete=models.CASCADE,null=True,blank=True,related_name="comments")
 
     def __str__(self):
         return self.comment
