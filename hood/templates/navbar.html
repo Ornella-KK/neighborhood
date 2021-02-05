@@ -1,0 +1,151 @@
+{% load bootstrap4 %}
+{% load static %}
+<style>
+
+
+#navbarr{
+  background:  #010101;
+
+  /* background: #0099F7; */
+  /* background:#282D31; */
+
+/* background: -webkit-linear-gradient(to right, #F11712, #0099F7);
+background: linear-gradient(to right, #F11712, #0099F7); */
+margin-bottom:100px;
+height:90px;
+
+}
+.top-images {
+  height:50px;
+  width:50px;
+  border: 4px double #F3176E;
+}
+  .far:hover{
+    color:#2984D0;
+  }
+
+
+
+#navbarrr{
+  /* #00A3B4 */
+  /* background: #0099F7; */
+  /* background:#282D31; */
+  background:  #010101;
+
+
+
+margin-bottom:80px;
+height:90px;
+
+}
+#profiles{
+  border: 4px double #F3176E;;
+}
+*{
+  font-family: 'Roboto', sans-serif;
+}
+body{
+  background-color: #F9F9F9;
+
+}
+.ionic {
+  font-size: 40px;
+
+  color:white;
+  margin-left:4px;
+}
+.ionic:hover {
+  /* font-size: 46px; */
+
+  color:white;
+}
+  .navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #ddd;
+    background: white;
+  }
+  .navbar .logo-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .navbar .logo-section div {
+    -ms-flex-item-align: stretch;
+        align-self: stretch;
+    width: 1px;
+    background: black;
+    margin: 0 20px;
+  }
+  .navbar .icons-section .fa {
+    text-decoration: none;
+    font-size: 100%;
+    margin: 0 10px;
+    padding-left: 10px;
+  }
+  .navbar .logo {
+    width: 25px;
+  }
+  .navbar .logoname {
+    width: 100px;
+  }
+  .navbar .input-search {
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    outline: 0;
+  }
+  .navbar .input-search:focus {
+    text-align: left;
+  }
+
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+ <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+<nav class="navbar fixed-top" id="navbarr">
+<div class="container">
+    <section class="logo-section"><a href="{% url "index" %}"><img class="logo" src="/static/images/logo.png"  style="width:360px;height:60px;"alt="/></a>
+      <div></div><a href="{% url "index" %}"><img class="logoname"/></a>
+    </section>
+
+
+    <form class="navbar-form" role="search" action="{% url 'search' %}" style="width:auto">
+
+       <div class="input-group">
+         <input type="text" class="form-control" placeholder="Search businesses" name="name" style="height:38px;">
+         <div class="input-group-btn">
+         </div>
+       </div>
+
+     </form>
+    <section class="icons-section" >
+
+<!-- <a href="{% url "add_neighborhood"%}"><ion-icon name="cloud-upload" class="ionic"></ion-icon></a> -->
+
+
+       <a href="{% url 'profile' username=user %}"><ion-icon name="contact" class="ionic"></ion-icon></a>
+
+
+      <a href="/logout"><ion-icon name="log-out" class="ionic"></ion-icon></a>
+
+</section>
+    </div>
+  </nav>
+
+<script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
