@@ -1,7 +1,7 @@
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
-from app.models import *
-from app.forms import *
+from .models import *
+from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
