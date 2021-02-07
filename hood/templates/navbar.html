@@ -4,7 +4,7 @@
 <nav style="background-color:white;" class="animated slideInDown navbar-collapse navbar-expand-lg sticky-top ">
     <div class="navbar mx-5">
       <div id="logo" >
-        <a href="{% url 'home' %}" id="brand" style="color: black;"> awwwards.</a>
+        <a href="{% url 'index' %}" id="brand" style="color: black;"> NEIGHBORHOOD.</a>
       </div>
       <div class="nav-search">
         <form class="navbar-form" role="search" action="{% url 'search' %}" style="width:auto">
@@ -16,28 +16,20 @@
             </div>
      
           </form>
-         <section class="icons-section" >
-      </div>
-      <div class="dropdown dropleft">
-        <!--Trigger-->
-        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">APIS</button>  
-          <!--Menu-->
-          <div class="dropdown-menu dropdown-info">
-            <a class="dropdown-item" href="{% url 'profile_list' %}">Profiles</a>
-            <a class="dropdown-item" href="{% url 'projects_list' %}">Projects</a>
-          </div>
+         <section class="icons-section" ></section>
       </div>
       <div class="nav-right">
         {% if user.is_authenticated %}
         <a href="/logout/" class="accounts" style="color: black;">Log Out</a>
         <a href="{% url 'profile' username=user %}" class="avatar">
-            <img class="rounded-circle" src="{{user.profile.profile_photo.url}}" height="60" width="60" />
+            <a href="{% url 'profile' username=user %}"><ion-icon name="contact" class="ionic"></ion-icon></a>
         </a>
-            <a href="{% url 'post_site' %}" id="projects">SUBMIT PROJECT</a>      
         {% else %}
         <a href="/accounts/login" class="accounts" style="color: black;">Log In</a>        
         {%  endif %}        
       </div>
     </div>
 </nav>
+
+
+

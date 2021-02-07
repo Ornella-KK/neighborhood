@@ -4,22 +4,11 @@
 {% load static%}
 
 {% block content %}
-<!-- {{profile_details.contact | safe}}
-{{profile_details.user | upper}}
-sty
-
-<div class="container">
-
-  <div class="row">
-    <!-- <div class="col-md-2"></div> -->
-    <!-- <div class="col-md-8"> -->
 
 <style>
 .panel{
   position: relative;
   justify-content: center;
-  /* overflow: hidden; */
-  /* top: 5%; */
   text-align:center;
   left: 30%;
   margin-top:120px;
@@ -38,18 +27,12 @@ sty
             <div class="panel-body">
 
              <img src="{{profile_info.photo.url}}" alt="profile-photo" class="img-responsive" style="width:150px;height:150px;border-radius:50%;margin-top:6px;">
-             <!-- <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle prof"> -->
-             <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3AeEIETd1WF-w7g5xkFdUfvcX0FK7tH5gV7qiidS1iW4hJFAzzw" style="height:80px;width:80px;"> -->
-
-
-
-                 <!-- <p><i>Posted At: </i><b>{{pitch.posted}}</b></p> -->
             </div>
             <div class="panel-footer">
                   <h3>
 
                   username :   {{ profile.username }} <br>
-                  Hood :   {{ request.user.wewe.neighborhood.name }}
+                  Hood :   {{ request.user.meme.neighborhood.name }}
 
                 </h3>
 
