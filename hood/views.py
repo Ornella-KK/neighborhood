@@ -26,8 +26,8 @@ def index(request):
 
     message = "Hello World"
 
-    hoods = Neighborhood.objects.all()
-    context ={"hoods":hoods,"message":message}
+    nhoods = Neighborhood.objects.all()
+    context ={"nhoods":nhoods,"message":message}
 
     return render(request,'index.html',context)
 
@@ -92,17 +92,17 @@ def current_hood(request):
 @login_required(login_url='/accounts/login/')
 def join_hood(request,id):
     hood = get_object_or_404(Neighborhood, pk=id)
-    request.user.wewe.neighborhood = hood
-    request.user.wewe.save()
+    request.user.meme.neighborhood = hood
+    request.user.meme.save()
     messages.success(request, "You Just Joined a New Hood")
     return redirect('current_hood')
 
 @login_required(login_url='/accounts/login/')
 def exit_hood(request,id):
     hood = get_object_or_404(Neighborhood, pk=id)
-    if request.user.wewe.neighborhood == hood:
-        request.user.wewe.neighborhood = None
-        request.user.wewe.save()
+    if request.user.meme.neighborhood == hood:
+        request.user.meme.neighborhood = None
+        request.user.meme.save()
         messages.success(request,"Hood Exited")
     return redirect('index')
 
@@ -114,7 +114,7 @@ def new_business(request):
         if form.is_valid():
             new_business = form.save(commit=False)
             new_business.user = current_user
-            new_business.neighborhood=request.user.wewe.neighborhood
+            new_business.neighborhood=request.user.meme.neighborhood
             assert isinstance(new_business.save, object)
             new_business.save()
             messages.success(request, "New Business Created")
@@ -131,7 +131,7 @@ def new_alert(request):
         if form.is_valid():
             new_alert = form.save(commit=False)
             new_alert.user = current_user
-            new_alert.neighborhood=request.user.wewe.neighborhood
+            new_alert.neighborhood=request.user.meme.neighborhood
             assert isinstance(new_alert.save, object)
             new_alert.save()
             messages.success(request, "Post created successfully")
@@ -173,4 +173,4 @@ def post_comment(request,alert_id):
             return HttpResponseRedirect(reverse('comment', args=(alerts.id,)))
     else:
         form = CommentForm()
-    return render(request, 'single_post.html', {"user":current_user,"alerts":alerts,"comments":comments,"form":form})
+    return render(request, 'comment.html', {"user":current_user,"alerts":alerts,"comments":comments,"form":form})

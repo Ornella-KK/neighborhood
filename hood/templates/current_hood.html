@@ -1,32 +1,20 @@
 {%extends 'base.html'%} {% load static %} {% load bootstrap4 %} {% block content %}
-<script>
-$(function() {
-  $('.fade').delay(5000).show().fadeOut('slow');
-});
-
-</script>
 
 <div class="container" style="margin-top:100px;">
   <div class="row">
     <div class="col-md-4"></div>
     {% if messages %}
-
         {% for message in messages %}
-
           <div class="message alert alert-success">
             <button type="button" class="del-msg close" data-dismiss="alert" aria-label="Close"><span class="del-msg" >&times;</span></button>
           {{ message }}</div>
-
-
-
         {% endfor %}
-
     {% endif %}
     <div class="col-md-4"></div>
 
   </div>
   <style></style>
-  {% with request.user.wewe.neighborhood as currenthood %}
+  {% with request.user.meme.neighborhood as currenthood %}
   <div class="row">
 
     <div class="col-md-4"></div>
@@ -37,61 +25,60 @@ $(function() {
           <h3 class="text-center"><strong>{{currenthood.name}}</strong></h3>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item text-center"> <strong>Hood population : {{ currenthood.members.count }} members</strong></li>
-          <li class="list-group-item">
-            <p> <span style="margin:16px;">  <a href="{% url 'new_alert'%}" class="btn btn-info btn-outline">Post</a></span> <span>  <a href="{% url 'add_business'%}" class="btn btn-info btn-outline">Add Business</a> </span> <span><a href="{% url 'exit_hood' id=currenthood.id%}" class="btn btn-danger btn-outline">Exit Hood</a>
-            </span>
-            </p>
-
-          </li>
-
+          <li class="list-group-item text-center"> <strong>Population : {{ currenthood.members.count }} members</strong></li>
+          <div class="row">
+              <div class="col-md-4">
+                    <p> <span style="margin:16px;">  <a href="{% url 'new_alert'%}" class="btn btn-info">Post</a>
+              </div>
+              <div class="col-md-4">
+                <a href="{% url 'add_business'%}" class="btn btn-info">Add Business</a>
+              </div>
+              <div class="col-md-4">
+                <a href="{% url 'exit_hood' id=currenthood.id%}" class="btn btn-danger">Exit Hood</a>
+              </div>
+          </div>
         </ul>
       </div>
-
-
     </div>
     <div class="col-md-4"></div>
       </div>
 
     <div class="container" style="margin-left:10%;margin-top:4%">
       <ul class="nav nav-tabs nav-justified">
-        <li style="margin-right:200px;"><a href="#nairobi" data-toggle='tab'>POSTS</a></li>
-        <li class="active info "><a href="#zanzibar" data-toggle='tab'>Business</a></li>
+        <li style="margin-right:200px;"><a href="#posts" data-toggle='tab'>POSTS</a></li>
+        <li class="active info "><a href="#business" data-toggle='tab'>Business</a></li>
       </ul>
       <div class="tab-content" style="margin-top:4%">
 
-        <div id="nairobi" class="col-md-8 tab-pane fade">
+        <div id="posts" class="col-md-8 tab-pane fade">
   {% for alert in currenthood.alerts.all %}
           <div class="card " style="width:370px;">
             <div class="card-body">
               <div class="card-text">
-                <strong>{{alert.posted_by.username}}</strong>               <span>{{alert.alert | striptags}}</span></a> <span style="float:right"><a href="{% url 'comment' alert_id=alert.id %}" style="margin-right:8px;">add comment</a></span>
+                <strong>{{alert.posted_by.username}}</strong>               
+                <span>{{alert.alert | striptags}}</span></a> <span style="float:right"><a href="{% url 'comment' alert_id=alert.id %}" style="margin-right:8px;">add comment</a></span>
               </div>
-
-
+              <div class="card-text">
+                  <p>{{alert.comment}}</p>
+              </div>
             </div>
-
           </div>
             <br>
           {% endfor%}
-
         </div>
 
-
-        <div class="col-md-4 tab-pane fade" id="zanzibar">
+        <div class="col-md-4 tab-pane fade" id="business">
           <div class="" id="business">
-            <!-- <a href="{% url 'add_business'%}" class="btn btn-info btn-outline">Add Business</a> -->
             {% for business in currenthood.businesses.all %}
             <div class="card" style="width: 18rem;">
               <div class="card-header">
                 Name : {{business.name}}
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Owner : {{business.propreiter.username}}</li>
-                <li class="list-group-item">Contact : <a href="">  {{business.email}}</a></li>
+                <li class="list-group-item">Owner : {{business.proprietor}}</li>
+                <li class="list-group-item">Contact : <a href="">{{business.email}}</a></li>
               </ul>
             </div>
-
             <br> {% endfor%} {% else%}
             {% with request.user as name%}
       <div class="row">
@@ -101,22 +88,9 @@ $(function() {
            Please Join a hood <br>
         </p>
         </div>
-
       </div>
-
     {% endwith%}
-
           </div>
         </div>
-
-
-
         {%endif%} {% endwith %}
-
-
-
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
         {% endblock %}

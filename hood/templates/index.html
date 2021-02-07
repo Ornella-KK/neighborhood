@@ -17,51 +17,32 @@
 
     {% endif %}
     <div class="col-md-4"></div>
-
   </div>
   <div class="row">
-
-
     <div class="col-md-4"></div>
-
-  <h3> <a href="{%url 'current_hood'%}" class="btn btn-info btn-outline flash-button" >My Hood</a></h3>
-<h3>
-  <a href="{% url 'add_neighborhood'%}" class="btn btn-info btn-outline">Create Hood</a>
-
-</h3>
-
-
-    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
+    
+    <h3> <a href="{%url 'current_hood'%}" class="btn btn-primary" >My Hood</a></h3>
   </div>
   <div class="row">
-{% for hood in nhoods%}
-<div class="col-md-5 col-xs-12 col-sm-12 col-lg-6">
-  <div class="card">
-    <div class="card-body">
-          <div class="img-cont">
-            <img class="card-img-top img-responsive i-images" src="{{hood.photo.url}}">
-            <div class="overlay">
-            <div class="text">{{hood.name}}</div>
-            {% autoescape off %}
-
-            <!-- <div class="text">{{hood.description}}</div> -->
-            {% endautoescape %}
-            <div class="text">Members : {{hood.members.count}}</div>
-<br>
-            <a href="{% url 'join_hood' id=hood.id%}" class="btn btn-info btn-block">Join Hood</a>
-
-            <!-- <a href="{% url 'exit_hood' id=hood.id%}" class="btn btn-danger btn-block">Exit Hood</a> -->
-
-  </div>
-          </div>
-
-
+    {% for hood in nhoods%}
+    <div class="col-md-5 col-xs-12 col-sm-12 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+              <div class="img-cont">
+                <img class="card-img-top img-responsive i-images" src="{{hood.photo.url}}">
+              </div>
+                <div class="text">{{hood.name}}</div>
+                {% autoescape off %}
+                <div class="text">{{hood.description}}</div>
+                {% endautoescape %}
+                <div class="text">Members : {{hood.members.count}}</div>
+                <br>
+                <a href="{% url 'join_hood' id=hood.id%}" class="btn btn-warning btn-block">Join Hood</a>
+        </div>
+      </div>
     </div>
-
-  </div>
-</div>
-
-{% endfor %}
+    {% endfor %}
   </div>
 </div>
 
