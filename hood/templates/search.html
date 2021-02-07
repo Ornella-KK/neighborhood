@@ -25,23 +25,17 @@
   {% for business in found_businesses %}
   <hr>
 <div class="col-md-4"></div>
-
-
 <div class="col-md-4">
   <div class="card" style="width: 18rem;">
     <div class="card-header">
       Name : {{business.name}}
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Owner : {{business.propreiter.username}}</li>
+      <li class="list-group-item">Owner : {{business.proprietor}}</li>
       <li class="list-group-item">Contact : <a href="">  {{business.email}}</a></li>
     </ul>
   </div>
   <br>
-			<!-- <h3><a href='#'>{{business.name}}</a></h3>
-      <p>Owner : {{business.propreiter}}</p>
-    <p>Contact :   <a href="#">{{business.email}}</a></p> -->
-
 		</div>
 <hr>
     <div class="col-md-4"></div>
@@ -49,12 +43,7 @@
     {% endfor %}
     <hr>
 </div>
-
-
-
 </div>
-
-
   </div>
 </div>
 {% endblock %}
