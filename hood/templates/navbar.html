@@ -26,7 +26,7 @@
         {% if user.is_authenticated %}
         <a href="/logout/" class="accounts" style="color: black;">Log Out</a>
         <a href="{% url 'profile' username=user %}" class="avatar">
-            <a href="{% url 'profile' username=user %}"><ion-icon name="contact" class="ionic"></ion-icon></a>
+          <a href="{% url 'profile' username=user %}"><ion-icon name="contact" class="ionic"></ion-icon></a>
         </a>
         {% else %}
         <a href="/accounts/login" class="accounts" style="color: black;">Log In</a>        
