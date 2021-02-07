@@ -11,12 +11,12 @@ Bootstrap
 ### Live link
 https://lahood.herokuapp.com/
 ### Setup
-Clone: git clone https://github.com/Ornella-KK/neighborhood.git
-Navigate to where the poject is cloned eg.Desktop
-Create virtual environemnt
-Install required applications from requirements.txt
-Configure the database in the settings and where necessary and migrations
-Run application: python3.6 manage.py runserver
+* Clone: git clone https://github.com/Ornella-KK/neighborhood.git
+* Navigate to where the poject is cloned eg.Desktop
+* Create virtual environemnt
+* Install required applications from requirements.txt
+* Configure the database in the settings and where necessary and migrations
+* Run application: python3.6 manage.py runserver
 
 ### License
 MIT COPYRIGHT (c) 2020
